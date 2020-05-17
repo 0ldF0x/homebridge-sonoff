@@ -180,8 +180,11 @@ Sonoff.prototype.sendRequest = function sendRequest(url) {
         resolve(false);
         return;
       }
-
-      resolve(JSON.parse(response.body));
+      try {
+        resolve(JSON.parse(response.body));
+      } catch(_error){
+        resolve(null)
+      }
     });
   });
 };
